@@ -7,7 +7,8 @@
 (defn fuel [n]
   (int (Math/floor (- (/ n 3.) 2))))
 
-(reduce + (for [x input] (fuel x)))
+(defn part-1 [] 
+  (reduce + (for [x input] (fuel x))))
 
 ;2. star
 
@@ -18,4 +19,5 @@
         (reduce + m)
         (recur (conj m fu) fu)))))
 
-(reduce + (for [x input] (fuel2 x)))
+(defn part-2 [] 
+  (reduce + (for [x input] (fuel2 x))))
