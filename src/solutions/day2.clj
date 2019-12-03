@@ -1,25 +1,19 @@
 (ns solutions.day2)
 
 (defn input [noun verb]
-  (as-> (clojure.string/split (slurp "src/solutions/data/day2input.txt") #",") i
-    (map read-string i)
-    (vec i)
-    (assoc i 1 noun)
-    (assoc i 2 verb)))
+  (-> "src/solutions/data/day2input.txt"
+    slurp
+    (clojure.string/split #",")
+    (->> (mapv read-string))
+    (assoc 1 noun 2 verb)))
 
 ; part-1
-(defn opcode [c]
-  (case c
-    1 +
-    2 *
-    99 nil))
+(def opcode {1 + 2 *})
 
 (defn process [code]
     (loop [l code p 0]
-      (let [op (opcode (get l p))
-            i1 (get l (inc p))
-            i2 (get l (+ 2 p))
-            pos (get l (+ 3 p))]
+      (let [[opc i1 i2 pos] (subvec l p (+ p 4))
+            op (opcode opc)]
         (if-not op
           l
           (recur (assoc l pos (op (get l i1) (get l i2))) (+ 4 p))))))
