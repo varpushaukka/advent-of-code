@@ -1,6 +1,5 @@
 (ns solutions.day4)
 
-
 ;part 1
 (defn part1-solutions [] 
    (for [password (range 171309 643604)
@@ -18,8 +17,6 @@
       (remove #((set (flatten groups)) %) password)
       password
       )))
-
-(no-groups '(5 8 8 8 9 9))
 
 (defn part2-solutions []
   (for [lpw (part1-solutions)
