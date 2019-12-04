@@ -11,17 +11,10 @@
 (count (part1-solutions))
 
 ;part 2
-(defn no-groups [password]
-  (let [groups (filter (fn [[x y z]] (= x y z)) (partition 3 1 password))]
-    (if-not (empty? groups)
-      (remove #((set (flatten groups)) %) password)
-      password
-      )))
 
 (defn part2-solutions []
   (for [lpw (part1-solutions)
-        :let [pw (no-groups lpw)]
-        :when (some (fn [[x y]] (= x y)) (partition 2 1 pw))]
-    pw))
+        :when (some (fn [[_ y]] (= y 2)) (frequencies lpw))]
+    lpw))
 
 (count (part2-solutions))
