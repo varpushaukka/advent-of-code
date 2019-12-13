@@ -20,12 +20,19 @@
       coordlist
       )))
 
+(defn wire-cross-points [w1 w2] 
+  (clojure.set/intersection
+   (set (apply concat (wire-coordinates w1)))
+   (set (apply concat (wire-coordinates w2)))))
+
+;part 1
 (defn min-distance [w1 w2]
-  (let [wire-cross-points (clojure.set/intersection
-                           (set (apply concat (wire-coordinates w1)))
-                           (set (apply concat (wire-coordinates w2))))
-        dist (fn [[x y]] (+ (Math/abs x) (Math/abs y)))]
-    (apply min (map dist wire-cross-points)))
-    )
+  (letfn [(dist [[x y]] (+ (Math/abs x) (Math/abs y)))]
+    (apply min (map dist (wire-cross-points w1 w2)))))
 
 (min-distance (first (wires)) (last (wires)))
+
+;part 2
+
+(for [c (wire-cross-points (first (wires)) (last (wires)))]
+  (take-while #(not= % c) (wire-coordinates (first (wires)))))

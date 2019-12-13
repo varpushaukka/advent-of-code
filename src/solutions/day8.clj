@@ -15,3 +15,13 @@
         ones (get freq 1)
         twos (get freq 2)]
     (* ones twos)))
+
+(defn draw [l-list]
+ (letfn [(pixel-color [[x y]] (if (= 2 x) y x))
+         (merge-layers [l1 l2] (map pixel-color (partition 2 (interleave l1 l2))))]
+   (reduce merge-layers l-list)))
+
+(defn part-2 []
+    (let [image (partition 25 (draw layers))]
+      (for [line image]
+        (println line))))

@@ -13,4 +13,3 @@ def part2():
     return list(filter(lambda x: any(freq == 2 for freq in [x.count(freq) for freq in x]), pwl))
 
 print("part2 possible passwords: ", len(part2()))
-
