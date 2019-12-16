@@ -23,5 +23,5 @@
 
 (defn part-2 []
     (let [image (partition 25 (draw layers))]
-      (for [line image]
-        (println line))))
+      (doseq [line image]
+        (println (replace {0 " " 1 "X"} line)))))
