@@ -34,5 +34,12 @@
 
 ;part 2
 
-(for [c (wire-cross-points (first (wires)) (last (wires)))]
-  (take-while #(not= % c) (wire-coordinates (first (wires)))))
+(defn closest-intersection []
+  (let [wire1 (first (wires))
+        wire2 (second (wires))]
+    (for [i (wire-cross-points wire1 wire2)]
+      (+ (inc (count (take-while #(not= i %) (apply concat (wire-coordinates wire1)))))
+       (inc (count (take-while #(not= i %) (apply concat (wire-coordinates wire2))))))
+      )))
+
+(apply min (closest-intersection))
