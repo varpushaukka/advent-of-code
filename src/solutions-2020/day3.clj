@@ -7,11 +7,11 @@
 
 (count-trees input 3 1)
 
-(defn count-many-slope-trees []
-  (* (count-trees input 1 1) 
-   (count-trees input 3 1) 
-   (count-trees input 5 1) 
-   (count-trees input 7 1) 
-   (count-trees input 1 2)))
+(defn count-multiple-slope-trees []
+  (* (count-trees input 1 1)
+     (count-trees input 3 1)
+     (count-trees input 5 1)
+     (count-trees input 7 1)
+     (count-trees input 1 2)))
 
-(count-many-slope-trees)
+(count-multiple-slope-trees)
