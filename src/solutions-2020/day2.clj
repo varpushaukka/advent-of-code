@@ -12,6 +12,6 @@
 
 (defn valid-passwords-2 [pw-policies]
   (filter (every-pred (fn [[i1 i2 target password]] (not (every? #{(first target)} [(get password (dec (read-string i1))) (get password (dec (read-string i2)))])))
-                         (fn [[i1 i2 target password]] (some #{(first target)} [(get password (dec (read-string i1))) (get password (dec (read-string i2)))]))) pw-policies))
+                      (fn [[i1 i2 target password]] (some #{(first target)} [(get password (dec (read-string i1))) (get password (dec (read-string i2)))]))) pw-policies))
 
 (count (valid-passwords-2 input))
