@@ -14,7 +14,7 @@
     (map (fn [row column] (+ (* row 8) column)) (map #(row-num %) seats) (map #(col-num %) seats)))
 
 (defn part1 [seat]
-  (apply min (find-seat seat)))
+  (apply max (find-seat seat)))
 
 (defn part2 [seat] 
-  (first (filter some? (first (data/diff (range 48 923) (sort (find-seat seat)))))))
+  (first (filter some? (first (data/diff (range (apply min (find-seat seat)) (inc (part1 seat))) (sort (find-seat seat)))))))
