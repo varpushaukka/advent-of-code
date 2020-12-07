@@ -4,14 +4,11 @@
 
 (def input (-> "src/solutions-2020/data/day5input.txt" slurp (str/split #"\n")))
 
-(defn row-num [seat]
-  (Integer/parseInt (subs (str/replace seat #"F|B" {"F" "0" "B" "1"}) 0 7) 2))
-
-(defn col-num [seat]
-  (Integer/parseInt (subs (str/replace seat #"L|R" {"L" "0" "R" "1"}) 7 10) 2))
+(defn seat-num [seat x y]
+  (Integer/parseInt (subs (str/replace seat #"F|B|L|R" {"F" "0" "B" "1" "L" "0" "R" "1"}) x y) 2))
 
 (defn find-seat [seats] 
-    (map (fn [row column] (+ (* row 8) column)) (map #(row-num %) seats) (map #(col-num %) seats)))
+    (map (fn [row column] (+ (* row 8) column)) (map #(seat-num % 0 7) seats) (map #(seat-num % 7 10) seats)))
 
 (defn part1 [seat]
   (apply max (find-seat seat)))
