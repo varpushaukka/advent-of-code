@@ -10,9 +10,8 @@
 
 ;part 1
 (defn priority [rucksack]
-  (let [first-half (set (take (/ (count rucksack) 2) rucksack))
-        second-half (set (drop (/ (count rucksack) 2) rucksack))
-        common-char (first (st/intersection first-half second-half))]
+  (let [[a b] ((juxt take drop) (/ (count rucksack) 2) rucksack)
+        common-char (first (st/intersection (set a) (set b)))]
     (char-value common-char)))
 
 (reduce + (map priority input))
