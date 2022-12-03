@@ -1,4 +1,4 @@
-(ns solutions-2022.day2
+(ns day2
   (:require [clojure.string :as str]))
 
 (def input
@@ -26,6 +26,4 @@
     2 (calc-points [a a])
     3 (calc-points [a (get {1 2 2 3 3 1} a)])))
 
-(reduce + (map
-           (comp new-strategy parse-hand)
-           input))
+(reduce + (map (comp new-strategy parse-hand) input))

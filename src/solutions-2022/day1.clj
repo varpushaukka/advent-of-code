@@ -1,4 +1,4 @@
-(ns solutions-2022.day1
+(ns day1
   (:require [clojure.string :as str]))
 
 (def input
