@@ -20,12 +20,11 @@
         ints (map #(map read-string %) clist)]
     ints))
 
-
 (defn move [amount origin destination crate-piles]
   (let [org-pile (get crate-piles origin)
         dest-pile (get crate-piles destination)
         upd-org (drop amount org-pile)
-        upd-dest (apply conj dest-pile (take amount org-pile))
+        upd-dest (apply conj dest-pile (reverse (take amount org-pile)))
         drop-amount (assoc crate-piles origin upd-org)]
     (assoc drop-amount destination upd-dest)))
 
